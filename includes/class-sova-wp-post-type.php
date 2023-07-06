@@ -116,7 +116,7 @@ class SOVA_WP_Post_Type
         return $this;
     }
 
-    public function create()
+    public function register()
     {
         register_post_type( $this->name, [
             'label'  => __( $this->label ),
