@@ -1,12 +1,14 @@
 <?php
 
-require_once plugin_dir_path( __FILE__ ) . 'trait-sova-label.php';
-
 class SOVA_WP_Taxonomy
 {
     use SOVA_Label;
 
     private $name;
+
+    private $label;
+
+    private $label_plural;
 
     private $post_types;
 
@@ -17,6 +19,8 @@ class SOVA_WP_Taxonomy
     public function __construct()
     {
         $this->name = 'taxonomy';
+        $this->label = '';
+        $this->label_plural = '';
         $this->post_types = [];
         $this->public = true;
         $this->hierarchical = false;        
@@ -25,6 +29,20 @@ class SOVA_WP_Taxonomy
     public function name( string $name )
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function label( string $label )
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function label_plural( string $label_plural )
+    {
+        $this->label_plural = $label_plural;
 
         return $this;
     }
@@ -52,13 +70,11 @@ class SOVA_WP_Taxonomy
 
     public function create()
     {
-        $label = $this->label( $this->name );
-
         register_taxonomy( $this->name, $this->post_types, [
-            'label'                 => __( $label ),
+            'label'                 => __( $this->label ),
             'labels'                => [
-                'name'              => __( $label ),
-                'singular_name'     => __( $label ),
+                'name'              => __( $this->label_plural ),
+                'singular_name'     => __( $this->label ),
                 'search_items'      => __( 'Search' ),
                 'all_items'         => __( 'All' ),
                 'view_item '        => __( 'View' ),
@@ -68,7 +84,7 @@ class SOVA_WP_Taxonomy
                 'update_item'       => __( 'Update' ),
                 'add_new_item'      => __( 'Add New' ),
                 'new_item_name'     => __( 'New' ),
-                'menu_name'         => __( $label ),
+                'menu_name'         => __( $this->label ),
                 'back_to_items'     => __( '← Back' ),
             ],
             'public'       => $this->public,
