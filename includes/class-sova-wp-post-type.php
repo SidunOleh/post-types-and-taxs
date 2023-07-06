@@ -121,7 +121,7 @@ class SOVA_WP_Post_Type
         register_post_type( $this->name, [
             'label'  => __( $this->label ),
             'labels' => [
-                'name'               => __( $this->labels ),
+                'name'               => __( $this->label_plural ),
                 'singular_name'      => __( $this->label ),
                 'add_new'            => __( 'Add' ),
                 'add_new_item'       => __( 'Add' ),
@@ -131,7 +131,7 @@ class SOVA_WP_Post_Type
                 'search_items'       => __( 'Search' ),
                 'not_found'          => __( 'Not Found' ),
                 'not_found_in_trash' => __( 'Not Found in Trash' ),
-                'menu_name'          => __( $this->label ),
+                'menu_name'          => __( $this->label_plural ),
             ],
             'public'        => $this->public,
             'show_in_menu'  => $this->show_in_menu,
