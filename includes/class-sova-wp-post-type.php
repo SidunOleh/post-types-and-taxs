@@ -1,12 +1,12 @@
 <?php
 
-require_once plugin_dir_path( __FILE__ ) . 'trait-sova-label.php';
-
 class SOVA_WP_Post_Type 
 {
-    use SOVA_Label;
-
     private $name;
+
+    private $label;
+
+    private $label_plural;
 
     private $public;
 
@@ -26,7 +26,9 @@ class SOVA_WP_Post_Type
 
     public function __construct()
     {
-        $this->name = 'post_type';
+        $this->name = '';
+        $this->label = '';
+        $this->label_plural = '';
         $this->public = true;
         $this->show_in_menu = true;
         $this->menu_position = 20;
@@ -102,13 +104,11 @@ class SOVA_WP_Post_Type
 
     public function create()
     {
-        $label = $this->label( $this->name );
-
         register_post_type( $this->name, [
-            'label'  => __( $label ),
+            'label'  => __( $this->label ),
             'labels' => [
-                'name'               => __( $label ),
-                'singular_name'      => __( $label ),
+                'name'               => __( $this->labels ),
+                'singular_name'      => __( $this->label ),
                 'add_new'            => __( 'Add' ),
                 'add_new_item'       => __( 'Add' ),
                 'edit_item'          => __( 'Edit' ),
@@ -117,7 +117,7 @@ class SOVA_WP_Post_Type
                 'search_items'       => __( 'Search' ),
                 'not_found'          => __( 'Not Found' ),
                 'not_found_in_trash' => __( 'Not Found in Trash' ),
-                'menu_name'          => __( "$label" ),
+                'menu_name'          => __( $this->label ),
             ],
             'public'        => $this->public,
             'show_in_menu'  => $this->show_in_menu,
