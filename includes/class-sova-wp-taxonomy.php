@@ -2,8 +2,6 @@
 
 class SOVA_WP_Taxonomy
 {
-    use SOVA_Label;
-
     private $name;
 
     private $label;
