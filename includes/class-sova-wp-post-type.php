@@ -46,6 +46,20 @@ class SOVA_WP_Post_Type
         return $this;
     }
 
+    public function label( string $label )
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function label_plural( string $label_plural )
+    {
+        $this->label_plural = $label_plural;
+
+        return $this;
+    }
+
     public function public( bool $public )
     {
         $this->public = $public;
