@@ -82,7 +82,7 @@ class SOVA_WP_Taxonomy
                 'update_item'       => __( 'Update' ),
                 'add_new_item'      => __( 'Add New' ),
                 'new_item_name'     => __( 'New' ),
-                'menu_name'         => __( $this->label ),
+                'menu_name'         => __( $this->label_plural ),
                 'back_to_items'     => __( '← Back' ),
             ],
             'public'       => $this->public,
