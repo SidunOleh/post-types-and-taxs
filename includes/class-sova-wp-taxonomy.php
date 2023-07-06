@@ -66,7 +66,7 @@ class SOVA_WP_Taxonomy
         return $this;
     }
 
-    public function create()
+    public function register()
     {
         register_taxonomy( $this->name, $this->post_types, [
             'label'                 => __( $this->label ),
